@@ -27,10 +27,15 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
+      - name: Prepare site
+        run: |
+          mkdir -p _site
+          cp -R "1. 4Sep/moises-caicedo/." _site/
+
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "1. 4Sep/moises-caicedo"
+          path: _site
 
       - name: Deploy to GitHub Pages
         id: deployment
