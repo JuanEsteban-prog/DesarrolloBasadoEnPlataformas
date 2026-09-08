@@ -8,6 +8,7 @@
 2.
 
 - Cuando se utiliza html nativo, la interpretación de la página web va a ser mucho más rápida.
+- Tiene que ser AA
 
 ## 2. Formato del esqueleto de HTML
 
