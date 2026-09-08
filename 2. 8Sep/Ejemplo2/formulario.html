@@ -13,6 +13,80 @@
     <main>
       <h1>FORMULARIO HECHO EN CLASE</h1>
       <!-- Contenido central de la página -->
+      <label for="name">Nombre de (4 a 8 caracteres)</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        required
+        minlength="4"
+        maxlengtg="8"
+        size="10"
+      />
+
+      <fieldset>
+        <legend>Ejemplo de checkbox para el formulario en clase</legend>
+
+        <div>
+          <input type="checkbox" id="scales" name="classOne" checked />
+          <label for="scales">clase1</label>
+        </div>
+
+        <div>
+          <input type="checkbox" id="horns" name="classTwo" />
+          <label for="horns">clase2</label>
+        </div>
+      </fieldset>
+
+      <p>Elige un color de tu eleccion</p>
+      <div>
+        <input type="color" id="head" name="head" value="#e87639" />
+        <label for="head">Head</label>
+      </div>
+
+      <div>
+        <input type="color" id="body" name="body" value="#f6b73c" />
+        <label for="body">Body</label>
+      </div>
+
+      <label for="fechaNaciemiento">Introduce tu fecha de nacimiento:</label>
+      <input
+        type="date"
+        id="fechaNaciemiento"
+        name="fecha-nacimiento"
+        value="1950-01-01"
+        min="1950-01-01"
+        max="2026-08-09"
+      />
+
+      <label for="zona-horaria">Elige tu fecha y hora actual</label>
+      <input
+        type="datetime-local"
+        id="meeting-time"
+        name="meeting-time"
+        value="2018-06-12T19:30"
+        min="2018-06-07T00:00"
+        max="2018-06-14T00:00"
+      />
+
+      <label for="email">Ingresa tu direccion de correo electronico</label>
+      <input
+        type="email"
+        id="email"
+        pattern=".+@example\.com"
+        size="30"
+        required
+      />
+
+      <label for="archivo">Elije un archivo</label>
+      <input
+        type="file"
+        id="archivo"
+        name="archivo"
+        accept="image/png, image/jpeg"
+      />
+
+      <input type="button" name="button" value="Enviar" />
     </main>
 
     <footer>
