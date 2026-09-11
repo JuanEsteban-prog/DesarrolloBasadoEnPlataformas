@@ -1,4 +1,13 @@
 /* Estilos básicos para el formulario */
+:root {
+  --verde-principal: #2d6a4f;
+  --verde-oscuro: #1f4d39;
+  --verde-claro: #9fc2b0;
+  --rojo: #c44536;
+  --rojo-oscuro: #963126;
+  --amarillo-foco: #ffd166;
+}
+
 body {
   max-width: 700px;
   margin: 0 auto;
@@ -31,14 +40,14 @@ form {
 fieldset {
   display: grid;
   gap: 10px;
-  border: 1px solid #9fc2b0;
+  border: 1px solid var(--verde-claro);
   border-radius: 6px;
   padding: 16px;
 }
 
 legend {
   padding: 0 6px;
-  color: #2d6a4f;
+  color: var(--verde-principal);
   font-weight: bold;
 }
 
@@ -62,10 +71,10 @@ textarea {
   width: 100%;
 }
 
-input:focus,
-textarea:focus,
-button:focus {
-  outline: 3px solid #ffd166;
+input:focus-visible,
+textarea:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--amarillo-foco);
   outline-offset: 2px;
 }
 
@@ -95,21 +104,31 @@ button:focus {
 
 button {
   border: none;
-  background-color: #2d6a4f;
+  background-color: var(--verde-principal);
   color: white;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #1f4d39;
+  background-color: var(--verde-oscuro);
 }
 
 button[type="reset"] {
-  background-color: #c44536;
+  background-color: var(--rojo);
 }
 
 button[type="reset"]:hover {
-  background-color: #963126;
+  background-color: var(--rojo-oscuro);
+}
+
+a {
+  color: var(--verde-principal);
+  font-weight: bold;
+}
+
+a:focus-visible {
+  outline: 3px solid var(--amarillo-foco);
+  outline-offset: 2px;
 }
 
 input[type="image"] {
