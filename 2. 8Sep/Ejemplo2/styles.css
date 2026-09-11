@@ -102,6 +102,12 @@ button:focus-visible {
   flex-wrap: wrap;
 }
 
+#mensaje-formulario {
+  margin: 0;
+  color: var(--verde-principal);
+  font-weight: bold;
+}
+
 button {
   border: none;
   background-color: var(--verde-principal);

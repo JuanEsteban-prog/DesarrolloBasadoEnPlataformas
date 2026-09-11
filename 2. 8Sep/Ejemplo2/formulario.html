@@ -17,7 +17,8 @@
       <p>Los campos marcados con * son obligatorios.</p>
 
       <form
-        action="procesar-formulario.php"
+        id="formulario"
+        action="#"
         method="post"
         enctype="multipart/form-data"
       >
@@ -226,6 +227,7 @@
           <button type="reset">Limpiar</button>
           <button type="button" id="boton-ejemplo">Botón de ejemplo</button>
         </div>
+        <p id="mensaje-formulario" role="status" aria-live="polite"></p>
       </form>
     </main>
 

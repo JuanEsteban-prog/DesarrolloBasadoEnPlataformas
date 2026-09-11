@@ -1,4 +1,4 @@
-name: Deploy Moises Caicedo site to GitHub Pages
+name: Deploy formulario to GitHub Pages
 
 on:
   push:
@@ -30,7 +30,9 @@ jobs:
       - name: Prepare site
         run: |
           mkdir -p _site
-          cp -R "1. 4Sep/moises-caicedo/." _site/
+          cp "2. 8Sep/Ejemplo2/formulario.html" _site/
+          cp "2. 8Sep/Ejemplo2/styles.css" _site/
+          cp "2. 8Sep/Ejemplo2/script.js" _site/
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
