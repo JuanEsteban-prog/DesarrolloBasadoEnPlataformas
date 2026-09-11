@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Inicio - Nombre de tu Sitio</title>
+    <title>Formulario de ejemplo</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header>
@@ -12,81 +13,210 @@
 
     <main>
       <h1>FORMULARIO HECHO EN CLASE</h1>
-      <!-- Contenido central de la página -->
-      <label for="name">Nombre de (4 a 8 caracteres)</label>
-      <input
-        type="text"
-        id="name"
-        name="name"
-        required
-        minlength="4"
-        maxlengtg="8"
-        size="10"
-      />
+      <p>Los campos marcados con * son obligatorios.</p>
 
-      <fieldset>
-        <legend>Ejemplo de checkbox para el formulario en clase</legend>
+      <form action="#" method="post">
+        <input type="hidden" name="curso" value="html" />
 
-        <div>
-          <input type="checkbox" id="scales" name="classOne" checked />
-          <label for="scales">clase1</label>
+        <div class="campo">
+          <label for="name">Nombre (4 a 8 caracteres) *</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            minlength="4"
+            maxlength="8"
+          />
         </div>
 
-        <div>
-          <input type="checkbox" id="horns" name="classTwo" />
-          <label for="horns">clase2</label>
+        <div class="campo">
+          <label for="apellido">Apellido</label>
+          <input type="text" id="apellido" name="apellido" />
         </div>
-      </fieldset>
 
-      <p>Elige un color de tu eleccion</p>
-      <div>
-        <input type="color" id="head" name="head" value="#e87639" />
-        <label for="head">Head</label>
-      </div>
+        <div class="campo">
+          <label for="buscar">Buscar</label>
+          <input
+            type="search"
+            id="buscar"
+            name="buscar"
+            placeholder="Escribe una palabra"
+          />
+        </div>
 
-      <div>
-        <input type="color" id="body" name="body" value="#f6b73c" />
-        <label for="body">Body</label>
-      </div>
+        <div class="campo">
+          <label for="contrasena">Contraseña *</label>
+          <input
+            type="password"
+            id="contrasena"
+            name="contrasena"
+            required
+            minlength="8"
+          />
+        </div>
 
-      <label for="fechaNaciemiento">Introduce tu fecha de nacimiento:</label>
-      <input
-        type="date"
-        id="fechaNaciemiento"
-        name="fecha-nacimiento"
-        value="1950-01-01"
-        min="1950-01-01"
-        max="2026-08-09"
-      />
+        <div class="campo">
+          <label for="telefono">Teléfono</label>
+          <input
+            type="tel"
+            id="telefono"
+            name="telefono"
+            placeholder="+56 9 1234 5678"
+          />
+        </div>
 
-      <label for="zona-horaria">Elige tu fecha y hora actual</label>
-      <input
-        type="datetime-local"
-        id="meeting-time"
-        name="meeting-time"
-        value="2018-06-12T19:30"
-        min="2018-06-07T00:00"
-        max="2018-06-14T00:00"
-      />
+        <div class="campo">
+          <label for="email">Correo electrónico *</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            placeholder="nombre@ejemplo.com"
+          />
+        </div>
 
-      <label for="email">Ingresa tu direccion de correo electronico</label>
-      <input
-        type="email"
-        id="email"
-        pattern=".+@example\.com"
-        size="30"
-        required
-      />
+        <div class="campo">
+          <label for="sitio-web">Página web</label>
+          <input
+            type="url"
+            id="sitio-web"
+            name="sitio-web"
+            placeholder="https://ejemplo.com"
+          />
+        </div>
 
-      <label for="archivo">Elije un archivo</label>
-      <input
-        type="file"
-        id="archivo"
-        name="archivo"
-        accept="image/png, image/jpeg"
-      />
+        <fieldset>
+          <legend>¿Qué clase prefieres? *</legend>
+          <div class="opciones">
+            <label
+              ><input type="radio" name="clase" value="manana" required />
+              Mañana</label
+            >
+            <label
+              ><input type="radio" name="clase" value="tarde" /> Tarde</label
+            >
+          </div>
+        </fieldset>
 
-      <input type="button" name="button" value="Enviar" />
+        <fieldset>
+          <legend>Temas que te interesan</legend>
+          <div class="opciones">
+            <label
+              ><input type="checkbox" id="html" name="temas" value="html" />
+              HTML</label
+            >
+            <label
+              ><input type="checkbox" id="css" name="temas" value="css" />
+              CSS</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                id="javascript"
+                name="temas"
+                value="javascript"
+              />
+              JavaScript</label
+            >
+          </div>
+        </fieldset>
+
+        <div class="campo">
+          <label for="edad">Edad</label>
+          <input type="number" id="edad" name="edad" min="1" max="120" />
+        </div>
+
+        <div class="campo">
+          <label for="volumen"
+            >Nivel de conocimiento:
+            <output id="valor-volumen">5</output>/10</label
+          >
+          <input
+            type="range"
+            id="volumen"
+            name="volumen"
+            min="0"
+            max="10"
+            value="5"
+            oninput="
+              document.getElementById('valor-volumen').value = this.value
+            "
+          />
+        </div>
+
+        <div class="campo">
+          <label for="color">Elige un color</label>
+          <input type="color" id="color" name="color" value="#e87639" />
+        </div>
+
+        <div class="campo">
+          <label for="fecha-nacimiento">Fecha de nacimiento</label>
+          <input
+            type="date"
+            id="fecha-nacimiento"
+            name="fecha-nacimiento"
+            min="1950-01-01"
+            max="2026-09-11"
+          />
+        </div>
+
+        <div class="campo">
+          <label for="mes">Mes de inscripción</label>
+          <input type="month" id="mes" name="mes" />
+        </div>
+
+        <div class="campo">
+          <label for="semana">Semana preferida</label>
+          <input type="week" id="semana" name="semana" />
+        </div>
+
+        <div class="campo">
+          <label for="hora">Hora preferida</label>
+          <input type="time" id="hora" name="hora" />
+        </div>
+
+        <div class="campo">
+          <label for="reunion">Fecha y hora de la reunión</label>
+          <input type="datetime-local" id="reunion" name="reunion" />
+        </div>
+
+        <div class="campo">
+          <label for="archivo">Elige una imagen</label>
+          <input
+            type="file"
+            id="archivo"
+            name="archivo"
+            accept="image/png, image/jpeg"
+          />
+        </div>
+
+        <div class="campo">
+          <label for="comentario">Comentarios</label>
+          <textarea
+            id="comentario"
+            name="comentario"
+            rows="4"
+            placeholder="Escribe aquí..."
+          ></textarea>
+        </div>
+
+        <div class="botones">
+          <button type="submit">Enviar formulario</button>
+          <input
+            type="image"
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40'%3E%3Crect width='120' height='40' fill='%232d6a4f'/%3E%3Ctext x='60' y='25' text-anchor='middle' fill='white' font-size='14'%3EEnviar%3C/text%3E%3C/svg%3E"
+            alt="Enviar formulario como imagen"
+            width="120"
+            height="40"
+          />
+          <button type="reset">Limpiar</button>
+          <button type="button" onclick="alert('Este es un botón de ejemplo')">
+            Botón de ejemplo
+          </button>
+        </div>
+      </form>
     </main>
 
     <footer>
