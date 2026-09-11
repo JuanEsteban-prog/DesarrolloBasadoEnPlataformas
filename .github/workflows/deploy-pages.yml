@@ -31,6 +31,7 @@ jobs:
         run: |
           mkdir -p _site
           cp "2. 8Sep/Ejemplo2/formulario.html" _site/
+          cp "2. 8Sep/Ejemplo2/formulario.html" _site/index.html
           cp "2. 8Sep/Ejemplo2/styles.css" _site/
           cp "2. 8Sep/Ejemplo2/script.js" _site/
 
