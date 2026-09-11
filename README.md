@@ -7,4 +7,3 @@ Espacio destinado para la clase de Desarrollo De Plataformas durante el semestre
 ## Proyecto web
 
 [Formulario](https://juanesteban-prog.github.io/DesarrolloBasadoEnPlataformas/)
-GitHub Pages publica únicamente el formulario y sus archivos CSS y JavaScript necesarios.
