@@ -2,8 +2,4 @@ Espacio destinado para la clase de Desarrollo De Plataformas durante el semestre
 
 ## Proyecto web
 
-[Ejemplo Moises Caicedo](https://juanesteban-prog.github.io/DesarrolloBasadoEnPlataformas/)
-
-## Proyecto web
-
 [Formulario](https://juanesteban-prog.github.io/DesarrolloBasadoEnPlataformas/)
