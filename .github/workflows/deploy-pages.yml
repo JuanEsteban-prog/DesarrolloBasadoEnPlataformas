@@ -30,7 +30,9 @@ jobs:
       - name: Prepare site
         run: |
           mkdir -p _site
-          rsync -av --exclude='.git' --exclude='_site' --exclude='.github' ./ _site/
+          cp portafolio/index.html _site/index.html
+          cp portafolio/portfolio.css _site/portfolio.css
+          rsync -av --exclude='.git' --exclude='_site' --exclude='.github' --exclude='portafolio' --exclude='index.html' --exclude='portfolio.css' ./ _site/
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
