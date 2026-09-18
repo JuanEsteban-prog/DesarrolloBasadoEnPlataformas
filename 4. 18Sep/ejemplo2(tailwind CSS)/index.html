@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Perfil de Lionel Messi, leyenda del fútbol mundial."
+    />
+    <title>Lionel Messi | El arte de jugar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              display: ["Space Grotesk", "sans-serif"],
+              body: ["DM Sans", "sans-serif"],
+            },
+            colors: {
+              ink: "#101828",
+              sky: "#8ed8f5",
+              coral: "#ff7657",
+              sand: "#f7f4ed",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="bg-sand font-body text-ink selection:bg-coral selection:text-white"
+  >
+    <header class="absolute inset-x-0 top-0 z-20">
+      <nav
+        class="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-10"
+        aria-label="Navegación principal"
+      >
+        <a
+          href="#inicio"
+          class="flex items-center gap-3 font-display text-lg font-bold tracking-tight"
+        >
+          <span
+            class="grid h-10 w-10 place-items-center rounded-full bg-ink text-sm text-sky"
+            >LM</span
+          >
+          <span>MESSI<span class="text-coral">.</span></span>
+        </a>
+        <div class="hidden items-center gap-8 text-sm font-bold md:flex">
+          <a class="transition-colors hover:text-coral" href="#historia"
+            >Historia</a
+          >
+          <a class="transition-colors hover:text-coral" href="#logros"
+            >Logros</a
+          >
+          <a class="transition-colors hover:text-coral" href="#legado"
+            >Legado</a
+          >
+          <a
+            class="rounded-full bg-ink px-5 py-3 text-white transition-transform hover:-translate-y-1"
+            href="#datos"
+            >Descubrir más <span aria-hidden="true">↗</span></a
+          >
+        </div>
+        <button
+          id="mobile-menu-toggle"
+          class="rounded-full border border-ink/20 p-3 md:hidden"
+          aria-label="Abrir menú"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+      </nav>
+      <div
+        id="mobile-menu"
+        class="mx-6 hidden rounded-2xl bg-white p-5 shadow-xl md:hidden"
+      >
+        <div class="grid gap-4 text-sm font-bold">
+          <a class="mobile-link" href="#historia">Historia</a>
+          <a class="mobile-link" href="#logros">Logros</a>
+          <a class="mobile-link" href="#legado">Legado</a>
+          <a
+            class="rounded-full bg-ink px-5 py-3 text-center text-white"
+            href="#datos"
+            >Descubrir más <span aria-hidden="true">↗</span></a
+          >
+        </div>
+      </div>
+    </header>
+
+    <main id="inicio">
+      <section
+        class="relative isolate overflow-hidden bg-sky pt-32 lg:min-h-[720px] lg:pt-40"
+      >
+        <div
+          class="absolute -right-24 top-16 h-72 w-72 rounded-full border-[40px] border-white/20 lg:h-[34rem] lg:w-[34rem]"
+        ></div>
+        <div
+          class="absolute -left-24 bottom-0 h-64 w-64 rounded-full bg-white/20 blur-3xl"
+        ></div>
+        <div
+          class="relative mx-auto grid max-w-7xl items-center gap-12 px-6 lg:grid-cols-[.85fr_1.15fr] lg:px-10"
+        >
+          <div class="relative z-10 pb-12 lg:pb-24">
+            <p
+              class="mb-6 flex items-center gap-3 text-xs font-bold uppercase tracking-[.25em] text-ink/60"
+            >
+              <span class="h-px w-10 bg-coral"></span> El número 10
+            </p>
+            <h1
+              class="max-w-xl font-display text-7xl font-bold leading-[.85] tracking-[-.07em] sm:text-8xl lg:text-[9.5rem]"
+            >
+              Lionel<br /><span class="text-white">Messi</span
+              ><span class="text-coral">.</span>
+            </h1>
+            <p class="mt-8 max-w-md text-lg leading-relaxed text-ink/70">
+              Una zurda que convirtió el fútbol en lenguaje. La historia de un
+              chico de Rosario que hizo del juego una obra de arte.
+            </p>
+            <div class="mt-9 flex flex-wrap gap-4">
+              <a
+                href="#historia"
+                class="rounded-full bg-ink px-6 py-3.5 text-sm font-bold text-white shadow-xl shadow-ink/15 transition-transform hover:-translate-y-1"
+                >Conocer su historia <span aria-hidden="true">↓</span></a
+              >
+              <a
+                href="#logros"
+                class="rounded-full border border-ink/30 px-6 py-3.5 text-sm font-bold transition-colors hover:bg-white/50"
+                >Ver sus logros</a
+              >
+            </div>
+          </div>
+          <div class="relative mx-auto w-full max-w-xl self-end lg:pt-8">
+            <div
+              class="absolute bottom-8 left-4 right-0 top-0 rotate-3 rounded-[2rem] bg-coral/80 lg:bottom-14"
+            ></div>
+            <div
+              class="relative h-[29rem] overflow-hidden rounded-[2rem] border-8 border-white bg-ink shadow-2xl lg:h-[38rem]"
+            >
+              <img
+                class="h-full w-full object-cover object-top"
+                src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Lionel_Messi_20180626.jpg"
+                alt="Lionel Messi con la selección argentina"
+                onerror="
+                  this.src =
+                    'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1000&q=85'
+                "
+              />
+              <div
+                class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/80 to-transparent p-6 pt-20 text-white"
+              >
+                <p class="font-display text-2xl font-bold">
+                  Rosario, Argentina
+                </p>
+                <p class="text-sm text-white/70">24 de junio de 1987</p>
+              </div>
+            </div>
+            <div
+              class="absolute -bottom-5 -left-4 rotate-[-8deg] bg-white px-5 py-3 font-display text-2xl font-bold shadow-xl lg:-left-10"
+            >
+              <span class="text-coral">10</span> / leyenda
+            </div>
+          </div>
+        </div>
+        <div
+          class="mx-auto mt-16 flex max-w-7xl items-center gap-4 px-6 pb-8 text-xs font-bold uppercase tracking-[.2em] text-ink/50 lg:px-10"
+        >
+          <span>Desliza para descubrir</span
+          ><span class="h-px w-16 bg-ink/30"></span
+          ><span aria-hidden="true">↓</span>
+        </div>
+      </section>
+
+      <section
+        id="historia"
+        class="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32"
+      >
+        <div class="grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-24">
+          <div>
+            <p
+              class="mb-5 text-xs font-bold uppercase tracking-[.25em] text-coral"
+            >
+              El viaje
+            </p>
+            <h2
+              class="font-display text-5xl font-bold leading-none tracking-[-.05em] sm:text-6xl"
+            >
+              Pequeño<br /><span class="text-coral">gigante.</span>
+            </h2>
+          </div>
+          <div>
+            <p
+              class="max-w-2xl text-2xl leading-tight tracking-tight text-ink/80"
+            >
+              Desde las calles de Rosario hasta la cima del fútbol mundial,
+              Messi siempre jugó con la misma idea: recibir la pelota y hacer
+              que algo suceda.
+            </p>
+            <div
+              class="mt-12 grid gap-8 border-t border-ink/15 pt-8 sm:grid-cols-3"
+            >
+              <div>
+                <p class="font-display text-4xl font-bold">2004</p>
+                <p class="mt-2 text-sm text-ink/60">Debut profesional</p>
+              </div>
+              <div>
+                <p class="font-display text-4xl font-bold">
+                  8<span class="text-coral">×</span>
+                </p>
+                <p class="mt-2 text-sm text-ink/60">Balones de Oro</p>
+              </div>
+              <div>
+                <p class="font-display text-4xl font-bold">2022</p>
+                <p class="mt-2 text-sm text-ink/60">Campeón del mundo</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="logros"
+        class="bg-ink px-6 py-24 text-white lg:px-10 lg:py-32"
+      >
+        <div class="mx-auto max-w-7xl">
+          <div class="mb-14 flex flex-wrap items-end justify-between gap-8">
+            <div>
+              <p
+                class="mb-5 text-xs font-bold uppercase tracking-[.25em] text-sky"
+              >
+                Una colección extraordinaria
+              </p>
+              <h2
+                class="font-display text-5xl font-bold leading-none tracking-[-.05em] sm:text-7xl"
+              >
+                Los números<br /><span class="text-sky">hablan.</span>
+              </h2>
+            </div>
+            <p class="max-w-xs text-sm leading-relaxed text-white/55">
+              Más que estadísticas: son las huellas de una carrera que cambió
+              para siempre la forma de entender el fútbol.
+            </p>
+          </div>
+          <div
+            class="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4"
+          >
+            <div class="bg-ink p-7">
+              <p class="text-sm text-white/50">Títulos</p>
+              <p class="mt-8 font-display text-6xl font-bold text-sky">45</p>
+              <p class="mt-2 text-sm text-white/50">a nivel colectivo</p>
+            </div>
+            <div class="bg-ink p-7">
+              <p class="text-sm text-white/50">Goles oficiales</p>
+              <p class="mt-8 font-display text-6xl font-bold text-sky">
+                850<span class="text-coral">+</span>
+              </p>
+              <p class="mt-2 text-sm text-white/50">y contando</p>
+            </div>
+            <div class="bg-ink p-7">
+              <p class="text-sm text-white/50">Asistencias</p>
+              <p class="mt-8 font-display text-6xl font-bold text-sky">380</p>
+              <p class="mt-2 text-sm text-white/50">una visión única</p>
+            </div>
+            <div class="bg-ink p-7">
+              <p class="text-sm text-white/50">Mundiales</p>
+              <p class="mt-8 font-display text-6xl font-bold text-sky">1</p>
+              <p class="mt-2 text-sm text-white/50">el sueño cumplido</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="legado" class="bg-white px-6 py-24 lg:px-10 lg:py-32">
+        <div
+          class="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1fr_.8fr] lg:items-center"
+        >
+          <div>
+            <p
+              class="mb-5 text-xs font-bold uppercase tracking-[.25em] text-coral"
+            >
+              Su legado
+            </p>
+            <h2
+              class="font-display text-5xl font-bold leading-none tracking-[-.05em] sm:text-7xl"
+            >
+              Jugar<br /><span class="text-sky">sin límites.</span>
+            </h2>
+            <blockquote
+              class="mt-10 border-l-4 border-coral pl-6 text-xl leading-relaxed text-ink/70"
+            >
+              “El día que piensas que no hay mejoras por hacer, es un día triste
+              para cualquier jugador.”<cite
+                class="mt-4 block text-xs font-bold uppercase tracking-[.2em] not-italic text-ink"
+                >Lionel Messi</cite
+              >
+            </blockquote>
+          </div>
+          <div id="datos" class="rounded-3xl bg-sand p-8 sm:p-10">
+            <p class="font-display text-2xl font-bold">Su forma de jugar</p>
+            <div class="mt-8 space-y-6">
+              <div>
+                <div class="mb-2 flex justify-between text-sm font-bold">
+                  <span>Creatividad</span><span class="text-coral">98</span>
+                </div>
+                <div class="h-2 rounded-full bg-ink/10">
+                  <div class="h-2 w-[98%] rounded-full bg-coral"></div>
+                </div>
+              </div>
+              <div>
+                <div class="mb-2 flex justify-between text-sm font-bold">
+                  <span>Definición</span><span class="text-coral">96</span>
+                </div>
+                <div class="h-2 rounded-full bg-ink/10">
+                  <div class="h-2 w-[96%] rounded-full bg-sky"></div>
+                </div>
+              </div>
+              <div>
+                <div class="mb-2 flex justify-between text-sm font-bold">
+                  <span>Visión</span><span class="text-coral">99</span>
+                </div>
+                <div class="h-2 rounded-full bg-ink/10">
+                  <div class="h-2 w-[99%] rounded-full bg-ink"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-coral px-6 py-8 text-ink lg:px-10">
+      <div
+        class="mx-auto flex max-w-7xl flex-wrap justify-between gap-4 text-sm font-bold"
+      >
+        <span>MESSI<span class="text-white">.</span> EL ARTE DE JUGAR</span
+        ><span>Rosario · Argentina · 10</span>
+      </div>
+    </footer>
+    <script>
+      const menuButton = document.querySelector("#mobile-menu-toggle");
+      const mobileMenu = document.querySelector("#mobile-menu");
+      const mobileLinks = document.querySelectorAll(".mobile-link");
+
+      menuButton.addEventListener("click", () => {
+        const isOpen = !mobileMenu.classList.toggle("hidden");
+        menuButton.setAttribute("aria-expanded", String(isOpen));
+        menuButton.setAttribute(
+          "aria-label",
+          isOpen ? "Cerrar menú" : "Abrir menú",
+        );
+      });
+
+      mobileLinks.forEach((link) =>
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+          menuButton.setAttribute("aria-expanded", "false");
+          menuButton.setAttribute("aria-label", "Abrir menú");
+        }),
+      );
+    </script>
+  </body>
+</html>
