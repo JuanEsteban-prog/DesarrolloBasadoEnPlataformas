@@ -29,9 +29,3 @@ Desventajas: - Curva de aprendizaje inicial. - Puede verse sobrecargado de clase
     - Optimizar: En producción, elimina las clases y componentes que no utilicemos.
     - Revisa accesibilidad: contraste, foco visible y compatibilidad con lectores de pantalla.
     - Combinar lo mejor: Usar tailwind para la base y bootstrap para algunos componentes si el proyecto lo permite.
-
-# Links ejemplos:
-
-    - https://equation-carroll-fiber-interaction.trycloudflare.com/
-    - https://define-coalition-toolbox-generating.trycloudflare.com/
-    - https://versus-seen-duties-literally.trycloudflare.com/
