@@ -33,6 +33,12 @@ jobs:
           cp portafolio/index.html _site/index.html
           cp portafolio/portfolio.css _site/portfolio.css
           rsync -av --exclude='.git' --exclude='_site' --exclude='.github' --exclude='portafolio' --exclude='index.html' --exclude='portfolio.css' ./ _site/
+          mkdir -p _site/proyectos/moises-caicedo _site/proyectos/formulario _site/proyectos/galeria-servicios _site/proyectos/caicedo-bootstrap _site/proyectos/messi-tailwind
+          rsync -av "1. 4Sep/moises-caicedo/" _site/proyectos/moises-caicedo/
+          rsync -av "2. 8Sep/Ejemplo2/" _site/proyectos/formulario/
+          rsync -av "3. 15Sep/EjemploEnClase/" _site/proyectos/galeria-servicios/
+          rsync -av "4. 18Sep/ejemplo1(Bootstrap)/" _site/proyectos/caicedo-bootstrap/
+          rsync -av "4. 18Sep/ejemplo2(tailwind CSS)/" _site/proyectos/messi-tailwind/
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
