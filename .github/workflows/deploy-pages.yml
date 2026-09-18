@@ -1,4 +1,4 @@
-name: Deploy formulario to GitHub Pages
+name: Deploy portfolio to GitHub Pages
 
 on:
   push:
@@ -30,10 +30,7 @@ jobs:
       - name: Prepare site
         run: |
           mkdir -p _site
-          cp "2. 8Sep/Ejemplo2/formulario.html" _site/
-          cp "2. 8Sep/Ejemplo2/formulario.html" _site/index.html
-          cp "2. 8Sep/Ejemplo2/styles.css" _site/
-          cp "2. 8Sep/Ejemplo2/script.js" _site/
+          rsync -av --exclude='.git' --exclude='_site' --exclude='.github' ./ _site/
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
