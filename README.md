@@ -1,5 +1,5 @@
 Espacio destinado para la clase de Desarrollo De Plataformas durante el semestre de intercambio (26-27). Esta materia sera convalidad por programación web I
 
-## Proyecto web
+## Portafolio
 
-[Formulario](https://juanesteban-prog.github.io/DesarrolloBasadoEnPlataformas/)
+[Protafolio de la asigntura](https://juanesteban-prog.github.io/DesarrolloBasadoEnPlataformas/)
