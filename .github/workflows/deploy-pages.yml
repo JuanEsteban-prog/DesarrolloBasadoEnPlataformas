@@ -39,6 +39,8 @@ jobs:
           rsync -av "3. 15Sep/EjemploEnClase/" _site/proyectos/galeria-servicios/
           rsync -av "4. 18Sep/ejemplo1(Bootstrap)/" _site/proyectos/caicedo-bootstrap/
           rsync -av "4. 18Sep/ejemplo2(tailwind CSS)/" _site/proyectos/messi-tailwind/
+          mkdir -p _site/ejercicio-25sep
+          rsync -av "6. 25Sep/Ejercicio/" _site/ejercicio-25sep/
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
