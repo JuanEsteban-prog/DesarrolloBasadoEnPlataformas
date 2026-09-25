@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clase 4 — Ejercicio guiado y evaluado</title>
+<style>
+:root{
+  --bg:#f5f7fb; --card:#ffffff; --text:#1c2333; --muted:#5b6478; --primary:#2f6fed; --primary-dark:#1d4fbb;
+  --ok:#1f9d55; --ok-bg:#eafaf0; --border:#e2e5ec; --code-bg:#0f172a; --code-text:#e2e8f0;
+  --warn-bg:#fff7e6; --warn-border:#f0b429; --bad:#d64545; --bad-bg:#fdeaea;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#12141c; --card:#1b1f2b; --text:#e7e9f3; --muted:#9aa3b8; --border:#2a2f3f;
+    --code-bg:#05070d; --code-text:#d7ecff; --warn-bg:#2a2410; --warn-border:#8a6d1f;
+    --ok-bg:#0e2a1a; --bad-bg:#3a1414; }
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;}
+.wrap{max-width:880px;margin:0 auto;padding:0 20px 80px;}
+header.top{position:sticky;top:0;background:var(--bg);z-index:20;padding:16px 0 10px;border-bottom:1px solid var(--border);}
+h1{font-size:1.5rem;margin:.2rem 0;}
+.subtitle{color:var(--muted);margin:0 0 10px;font-size:.95rem;}
+.progress-track{background:var(--border);border-radius:999px;height:14px;overflow:hidden;}
+.progress-fill{background:linear-gradient(90deg,var(--primary),var(--ok));height:100%;width:0%;transition:width .3s ease;}
+.progress-row{display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:.85rem;color:var(--muted);flex-wrap:wrap;gap:8px;}
+.quiz-status{font-weight:600;}
+.quiz-status.pendiente{color:var(--muted);}
+.quiz-status.ok{color:var(--ok);}
+.btn{cursor:pointer;border:1px solid var(--border);background:var(--card);color:var(--text);padding:6px 12px;border-radius:8px;font-size:.85rem;}
+.btn:hover{border-color:var(--primary);}
+.btn.danger{color:#b91c1c;}
+.btn.primary{background:var(--primary);color:#fff;border-color:var(--primary-dark);padding:10px 20px;font-size:1rem;}
+.btn.primary:hover{background:var(--primary-dark);}
+.btn.primary:disabled{opacity:.6;cursor:not-allowed;}
+.intro-card,.step,.closing,.quiz-final{background:var(--card);border:1px solid var(--border);border-left:5px solid var(--border);border-radius:10px;padding:18px 20px;margin:18px 0;}
+.intro-card{border-left-color:var(--primary);}
+.step.done{border-left-color:var(--ok);background:linear-gradient(180deg,var(--ok-bg),var(--card) 40%);}
+.step-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+.step-head h2{margin:0;font-size:1.15rem;}
+.step-num{display:inline-block;background:var(--primary);color:#fff;border-radius:50%;width:26px;height:26px;text-align:center;line-height:26px;font-size:.8rem;margin-right:8px;flex:none;}
+.chk-label{display:flex;align-items:center;gap:6px;font-size:.85rem;color:var(--muted);white-space:nowrap;user-select:none;cursor:pointer;}
+.chk-label input{width:18px;height:18px;cursor:pointer;}
+pre{background:var(--code-bg);color:var(--code-text);padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.85rem;}
+code{font-family:"SF Mono",Consolas,Monaco,monospace;}
+p code,li code{background:var(--border);color:var(--text);padding:1px 5px;border-radius:4px;font-size:.9em;}
+.tip,.warn{border-radius:8px;padding:12px 14px;margin:12px 0;font-size:.93rem;}
+.tip{background:#eaf1ff;border:1px solid #b7cdfa;}
+@media (prefers-color-scheme: dark){.tip{background:#152238;border-color:#2c4a86;}}
+.warn{background:var(--warn-bg);border:1px solid var(--warn-border);}
+ol,ul{padding-left:22px;}
+.footer-links{font-size:.85rem;color:var(--muted);margin-top:30px;text-align:center;}
+.closing{border-left-color:var(--ok);text-align:center;display:none;}
+.closing.show{display:block;}
+.small{font-size:.85rem;color:var(--muted);}
+.filename{font-size:.78rem;color:var(--muted);margin:10px 0 -4px;font-weight:600;}
+/* Quiz */
+.quiz-q{border:1px solid var(--border);border-left:5px solid var(--border);border-radius:8px;padding:14px 16px;margin:14px 0;}
+.quiz-q.correcta{border-left-color:var(--ok);background:linear-gradient(180deg,var(--ok-bg),var(--card) 60%);}
+.quiz-q.incorrecta{border-left-color:var(--bad);background:linear-gradient(180deg,var(--bad-bg),var(--card) 60%);}
+.quiz-q.sin-responder{border-left-color:var(--warn-border);}
+.quiz-question{margin:0 0 8px;}
+.quiz-opt{display:block;padding:6px 10px;border-radius:6px;cursor:pointer;font-size:.92rem;}
+.quiz-opt:hover{background:var(--border);}
+.quiz-opt input{margin-right:8px;}
+.quiz-opt input:disabled{cursor:not-allowed;}
+.quiz-feedback{font-size:.85rem;margin-top:8px;font-weight:600;min-height:1.1em;}
+.quiz-final{border-left-color:var(--primary);text-align:center;}
+.quiz-score{font-size:1.5rem;font-weight:700;margin:10px 0;}
+#quizWarning{display:none;}
+#quizWarning.show{display:block;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <h1>🧩 Clase 4 — Ejercicio guiado y evaluado</h1>
+  <p class="subtitle">Construye en tu computadora un simulador de servicio asíncrono con manejo de errores, usando promesas, async/await y una clase de error personalizada.</p>
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-row">
+    <span id="progressText">0 / 0 pasos completados</span>
+    <span class="quiz-status pendiente" id="quizStatusHeader">Evaluación: pendiente</span>
+    <button class="btn danger" id="resetBtn">Reiniciar todo (pasos + evaluación)</button>
+  </div>
+</header>
+
+<section class="intro-card">
+  <strong>¿Qué vas a construir?</strong>
+  <p>Un ejercicio completo: un <strong>simulador de servicio asíncrono</strong> con un botón que "carga datos de usuario" desde una función que devuelve una <code>Promise</code> (con una probabilidad de fallar, como una petición de red real), manejado con <code>async</code>/<code>await</code> y un <code>try/catch/finally</code>, además de una <strong>clase de error personalizada</strong> (<code>ServicioError</code>). Vas a escribir tú mismo cada archivo (<code>index.html</code>, <code>styles.css</code>, <code>script.js</code>) siguiendo el código fuente indicado en cada paso.</p>
+  <p>A lo largo de la guía encontrarás <strong>10 preguntas de opción múltiple (5 puntos cada una, 50 en total)</strong> sobre las líneas de código que acabas de escribir. Puedes responderlas mientras avanzas, pero <strong>se califican todas juntas, una sola vez</strong>, al final, con el botón "Finalizar práctica y calificar". Después de calificar, tus respuestas quedan bloqueadas — solo tienes un intento.</p>
+  <p class="small">Este ejercicio cubre únicamente los temas de la Clase 4 (JavaScript moderno ES6+, promesas, async/await y manejo de errores). Para la teoría completa abre <code>clase4-javascript-moderno.html</code>, y para la guía de investigación abierta abre <code>clase4-guia-paso-a-paso.html</code>, ambos en esta misma carpeta.</p>
+</section>
+
+<!-- PASO 1 -->
+<section class="step" data-step="1">
+  <div class="step-head">
+    <h2><span class="step-num">1</span>Prepara tu entorno (desde cero)</h2>
+    <label class="chk-label"><input type="checkbox" data-chk="1"> Completado</label>
+  </div>
+  <ol>
+    <li>Si no tienes un editor de código instalado, descarga <strong>Visual Studio Code</strong> desde <code>code.visualstudio.com</code> e instálalo con las opciones por defecto.</li>
+    <li>Crea una carpeta llamada <code>ejercicio4</code> en tu computadora.</li>
+    <li>Abre esa carpeta en VS Code con <strong>Archivo → Abrir carpeta...</strong></li>
+    <li>Crea tres archivos vacíos: <code>index.html</code>, <code>styles.css</code> y <code>script.js</code>.</li>
+  </ol>
+  <div class="tip">💡 Puedes abrir <code>index.html</code> con doble clic en el explorador de archivos para verlo en tu navegador en cualquier momento, sin instalar nada más. Mantén la consola abierta con <code>F12</code> para ver los mensajes de <code>console.log</code>.</div>
+</section>
+
+<!-- PASO 2 -->
+<section class="step" data-step="2">
+  <div class="step-head">
+    <h2><span class="step-num">2</span>Escribe el esqueleto HTML</h2>
+    <label class="chk-label"><input type="checkbox" data-chk="2"> Completado</label>
+  </div>
+  <p>Escribe esto en <code>index.html</code>:</p>
+  <p class="filename">📄 index.html (completo)</p>
+  <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;Simulador de servicio asíncrono&lt;/title&gt;
+&lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;main&gt;
+  &lt;h1&gt;Simulador de servicio asíncrono&lt;/h1&gt;
+  &lt;button id="btnCargar" type="button"&gt;Cargar datos del usuario&lt;/button&gt;
+  &lt;p id="resultado" aria-live="polite"&gt;Presiona el botón para empezar.&lt;/p&gt;
+&lt;/main&gt;
+&lt;script src="script.js" defer&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+  <p>Guarda y ábrelo en el navegador. Verás el botón y el texto "Presiona el botón para empezar." — el botón todavía no hace nada, eso lo resolveremos con <code>script.js</code>.</p>
+</section>
+
+<!-- PASO 3 -->
+<section class="step" data-step="3">
+  <div class="step-head">
+    <h2><span class="step-num">3</span>Da estilo con CSS</h2>
+    <label class="chk-label"><input type="checkbox" data-chk="3"> Completado</label>
+  </div>
+  <p>Escribe esto en <code>styles.css</code>:</p>
+  <p class="filename">📄 styles.css (completo)</p>
+  <pre><code>* { box-sizing: border-box; }
+body { font-family: Arial, sans-serif; background:#f7f8fb; color:#1c2333; }
+main { max-width:480px; margin:60px auto; padding:20px; background:#fff; border-radius:10px; text-align:center; }
+button { padding:10px 18px; background:#2f6fed; color:#fff; border:none; border-radius:6px; cursor:pointer; font-size:1rem; }
+button:hover { background:#1d4fbb; }
+#resultado { margin-top:16px; font-weight:600; min-height:1.4em; }</code></pre>
+  <p>Guarda y recarga: verás la tarjeta centrada con el botón azul.</p>
+</section>
+
+<!-- PASO 4 -->
+<section class="step" data-step="4">
+  <div class="step-head">
+    <h2><span class="step-num">4</span>Crea la clase de error personalizada</h2>
+    <label class="chk-label"><input type="checkbox" data-chk="4"> Completado</label>
+  </div>
+  <p>En <code>script.js</code>, escribe:</p>
+  <p class="filename">📄 script.js (parte 1)</p>
+  <pre><code>class ServicioError extends Error {
+  constructor(mensaje) {
+    super(mensaje);
+    this.name = "ServicioError";
+  }
+}</code></pre>
+  <p><code>ServicioError</code> extiende de la clase <code>Error</code> nativa de JavaScript: hereda su comportamiento (como la propiedad <code>message</code> y la pila de llamadas) y además le da un nombre propio, <code>"ServicioError"</code>, para poder distinguirla de otros errores más adelante.</p>
+
+  <div class="quiz-q" data-q="4">
+    <p class="quiz-question"><strong>Pregunta 1 (5 pts).</strong> En <code>class ServicioError extends Error { constructor(mensaje){ super(mensaje); ... } }</code>, ¿qué hace <code>super(mensaje)</code>?</p>
+    <label class="quiz-opt"><input type="radio" name="q4" value="a"> Crea una nueva clase desde cero</label>
+    <label class="quiz-opt"><input type="radio" name="q4" value="b"> Llama al constructor de la clase padre (<code>Error</code>), inicializando su propiedad <code>message</code></label>
+    <label class="quiz-opt"><input type="radio" name="q4" value="c"> Detiene la ejecución del programa</label>
+    <label class="quiz-opt"><input type="radio" name="q4" value="d"> Es opcional y no afecta el comportamiento</label>
+    <div class="quiz-feedback" data-fb="4"></div>
+  </div>
+
+  <div class="quiz-q" data-q="9">
+    <p class="quiz-question"><strong>Pregunta 2 (5 pts).</strong> ¿Por qué se creó una clase <code>ServicioError</code> personalizada en vez de usar <code>throw "mensaje de texto"</code>?</p>
+    <label class="quiz-opt"><input type="radio" name="q9" value="a"> Porque JavaScript no permite lanzar texto plano</label>
+    <label class="quiz-opt"><input type="radio" name="q9" value="b"> Para poder identificar el tipo de error (<code>error.name</code>) y estructurarlo, en vez de manejar solo un string suelto</label>
+    <label class="quiz-opt"><input type="radio" name="q9" value="c"> Porque las clases son más rápidas que los strings</label>
+    <label class="quiz-opt"><input type="radio" name="q9" value="d"> No hay ninguna ventaja real</label>
+    <div class="quiz-feedback" data-fb="9"></div>
+  </div>
+</section>
+
+<!-- PASO 5 -->
+<section class="step" data-step="5">
+  <div class="step-head">
+    <h2><span class="step-num">5</span>Crea la función que simula el servicio</h2>
+    <label class="chk-label"><input type="checkbox" data-chk="5"> Completado</label>
+  </div>
+  <p>Agrega, debajo de la clase, en <code>script.js</code>:</p>
+  <p class="filename">📄 script.js (parte 2, agregar)</p>
+  <pre><code>function obtenerDatosUsuario() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const exito = Math.random() > 0.3;
+      if (exito) {
+        resolve({ usuario: "Ana", rol: "estudiante" });
+      } else {
+        reject(new ServicioError("No se pudo conectar con el servicio"));
+      }
+    }, 800);
+  });
+}</code></pre>
+  <p><code>obtenerDatosUsuario</code> devuelve una <code>Promise</code> que, tras 800 milisegundos (simulando el tiempo de una petición real), se resuelve con los datos del usuario el 70% de las veces, o se rechaza con un <code>ServicioError</code> el otro 30%.</p>
+
+  <div class="quiz-q" data-q="5">
+    <p class="quiz-question"><strong>Pregunta 3 (5 pts).</strong> <code>new Promise((resolve, reject) => {...})</code> — ¿qué representa un <code>Promise</code>?</p>
+    <label class="quiz-opt"><input type="radio" name="q5" value="a"> Un valor que ya está disponible de inmediato</label>
+    <label class="quiz-opt"><input type="radio" name="q5" value="b"> Un objeto que representa una operación asíncrona que eventualmente se resuelve o se rechaza</label>
+    <label class="quiz-opt"><input type="radio" name="q5" value="c"> Una función que se ejecuta de forma síncrona</label>
+    <label class="quiz-opt"><input type="radio" name="q5" value="d"> Un tipo de bucle</label>
+    <div class="quiz-feedback" data-fb="5"></div>
+  </div>
+
+  <div class="quiz-q" data-q="6">
+    <p class="quiz-question"><strong>Pregunta 4 (5 pts).</strong> <code>setTimeout(() => {...}, 800)</code> dentro de la Promise — ¿para qué se usa aquí?</p>
+    <label class="quiz-opt"><input type="radio" name="q6" value="a"> Para simular una operación que tarda un tiempo real, como una petición de red</label>
+    <label class="quiz-opt"><input type="radio" name="q6" value="b"> Para detener el navegador por 800 segundos</label>
+    <label class="quiz-opt"><input type="radio" name="q6" value="c"> Es obligatorio en toda Promise</label>
+    <label class="quiz-opt"><input type="radio" name="q6" value="d"> Para repetir la función 800 veces</label>
+    <div class="quiz-feedback" data-fb="6"></div>
+  </div>
+</section>
+
+<!-- PASO 6 -->
+<section class="step" data-step="6">
+  <div class="step-head">
+    <h2><span class="step-num">6</span>Toma las referencias del DOM y arma el manejador</h2>
+    <label class="chk-label"><input type="checkbox" data-chk="6"> Completado</label>
+  </div>
+  <p>Agrega, debajo de la función, en <code>script.js</code> (todavía sin el <code>try/catch</code>, lo completas en el próximo paso):</p>
+  <p class="filename">📄 script.js (parte 3, agregar)</p>
+  <pre><code>const boton = document.getElementById("btnCargar");
+const resultado = document.getElementById("resultado");
+
+boton.addEventListener("click", async () => {
+  resultado.textContent = "Cargando...";
+});</code></pre>
+  <p>Guarda y recarga: al hacer clic en el botón, el texto debe cambiar a "Cargando..." (por ahora se queda ahí, porque todavía no llamamos a <code>obtenerDatosUsuario()</code>).</p>
+
+  <div class="quiz-q" data-q="1">
+    <p class="quiz-question"><strong>Pregunta 5 (5 pts).</strong> ¿Qué pasa si intentas reasignar una variable declarada con <code>const</code> (como <code>boton</code> o <code>resultado</code>)?</p>
+    <label class="quiz-opt"><input type="radio" name="q1" value="a"> Nada, se reasigna sin problema</label>
+    <label class="quiz-opt"><input type="radio" name="q1" value="b"> JavaScript lanza un error, porque <code>const</code> no permite reasignar el identificador</label>
+    <label class="quiz-opt"><input type="radio" name="q1" value="c"> Se convierte automáticamente en <code>let</code></label>
+    <label class="quiz-opt"><input type="radio" name="q1" value="d"> Solo funciona dentro de una función</label>
+    <div class="quiz-feedback" data-fb="1"></div>
+  </div>
+
+  <div class="quiz-q" data-q="2">
+    <p class="quiz-question"><strong>Pregunta 6 (5 pts).</strong> Sobre la arrow function <code>async () => {...}</code> usada como manejador de clic, ¿cuál es su principal diferencia con una función tradicional en este contexto?</p>
+    <label class="quiz-opt"><input type="radio" name="q2" value="a"> No pueden recibir parámetros</label>
+    <label class="quiz-opt"><input type="radio" name="q2" value="b"> No tienen su propio <code>this</code>, toman el del contexto donde se definen</label>
+    <label class="quiz-opt"><input type="radio" name="q2" value="c"> Son más lentas de ejecutar</label>
+    <label class="quiz-opt"><input type="radio" name="q2" value="d"> No pueden ser asíncronas</label>
+    <div class="quiz-feedback" data-fb="2"></div>
+  </div>
+</section>
+
+<!-- PASO 7 -->
+<section class="step" data-step="7">
+  <div class="step-head">
+    <h2><span class="step-num">7</span>Completa el manejador con <code>try/catch/finally</code></h2>
+    <label class="chk-label"><input type="checkbox" data-chk="7"> Completado</label>
+  </div>
+  <p>Reemplaza el bloque anterior por esta versión completa, agregando <code>await</code>, el <code>try/catch</code> y el <code>finally</code>:</p>
+  <p class="filename">📄 script.js (parte 3, versión final)</p>
+  <pre><code>boton.addEventListener("click", async () => {
+  resultado.textContent = "Cargando...";
+  try {
+    const datos = await obtenerDatosUsuario();
+    resultado.textContent = `Bienvenido, ${datos.usuario} (${datos.rol})`;
+  } catch (error) {
+    resultado.textContent = `Error: ${error.message}`;
+  } finally {
+    console.log("Intento de carga finalizado");
+  }
+});</code></pre>
+  <p>Guarda, recarga y haz clic varias veces en el botón: aproximadamente 7 de cada 10 veces verás el mensaje de bienvenida, y las otras verás el mensaje de error — en ambos casos, revisa la consola (<code>F12</code>) y confirma que ves <code>"Intento de carga finalizado"</code> cada vez.</p>
+
+  <div class="quiz-q" data-q="3">
+    <p class="quiz-question"><strong>Pregunta 7 (5 pts).</strong> En el template literal <code>`Bienvenido, ${datos.usuario} (${datos.rol})`</code>, ¿qué logra la sintaxis <code>${...}</code>?</p>
+    <label class="quiz-opt"><input type="radio" name="q3" value="a"> Comenta el código</label>
+    <label class="quiz-opt"><input type="radio" name="q3" value="b"> Interpola (inserta) el valor de una expresión JS dentro del texto</label>
+    <label class="quiz-opt"><input type="radio" name="q3" value="c"> Convierte el texto a mayúsculas</label>
+    <label class="quiz-opt"><input type="radio" name="q3" value="d"> Concatena archivos CSS</label>
+    <div class="quiz-feedback" data-fb="3"></div>
+  </div>
+
+  <div class="quiz-q" data-q="7">
+    <p class="quiz-question"><strong>Pregunta 8 (5 pts).</strong> <code>await obtenerDatosUsuario()</code> dentro de una función <code>async</code> — ¿qué logra <code>await</code>?</p>
+    <label class="quiz-opt"><input type="radio" name="q7" value="a"> Ejecuta la promesa en otro hilo del navegador</label>
+    <label class="quiz-opt"><input type="radio" name="q7" value="b"> Pausa la ejecución de la función <code>async</code> hasta que la promesa se resuelva o se rechace, sin bloquear el resto de la página</label>
+    <label class="quiz-opt"><input type="radio" name="q7" value="c"> Cancela la promesa</label>
+    <label class="quiz-opt"><input type="radio" name="q7" value="d"> Convierte la promesa en un valor síncrono para toda la aplicación</label>
+    <div class="quiz-feedback" data-fb="7"></div>
+  </div>
+
+  <div class="quiz-q" data-q="8">
+    <p class="quiz-question"><strong>Pregunta 9 (5 pts).</strong> ¿Qué captura el bloque <code>catch (error)</code> en este código?</p>
+    <label class="quiz-opt"><input type="radio" name="q8" value="a"> Solo errores de sintaxis</label>
+    <label class="quiz-opt"><input type="radio" name="q8" value="b"> El error lanzado si la promesa de <code>obtenerDatosUsuario()</code> se rechaza (<code>reject</code>)</label>
+    <label class="quiz-opt"><input type="radio" name="q8" value="c"> Los <code>console.log</code> de la función</label>
+    <label class="quiz-opt"><input type="radio" name="q8" value="d"> Nada, <code>catch</code> no funciona con async/await</label>
+    <div class="quiz-feedback" data-fb="8"></div>
+  </div>
+
+  <div class="quiz-q" data-q="10">
+    <p class="quiz-question"><strong>Pregunta 10 (5 pts).</strong> ¿Qué garantiza que el bloque <code>finally</code> se ejecute?</p>
+    <label class="quiz-opt"><input type="radio" name="q10" value="a"> Solo se ejecuta si hubo un error</label>
+    <label class="quiz-opt"><input type="radio" name="q10" value="b"> Solo se ejecuta si la promesa fue exitosa</label>
+    <label class="quiz-opt"><input type="radio" name="q10" value="c"> Se ejecuta siempre, tanto si el <code>try</code> tuvo éxito como si el <code>catch</code> capturó un error</label>
+    <label class="quiz-opt"><input type="radio" name="q10" value="d"> Nunca se ejecuta si la función es <code>async</code></label>
+    <div class="quiz-feedback" data-fb="10"></div>
+  </div>
+</section>
+
+<!-- PASO 8: código fuente completo -->
+<section class="step" data-step="8">
+  <div class="step-head">
+    <h2><span class="step-num">8</span>Código fuente completo (para comparar)</h2>
+    <label class="chk-label"><input type="checkbox" data-chk="8"> Completado</label>
+  </div>
+  <p>Compara tus tres archivos terminados con esta versión de referencia completa:</p>
+  <p class="filename">📄 index.html (completo)</p>
+  <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;Simulador de servicio asíncrono&lt;/title&gt;
+&lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;main&gt;
+  &lt;h1&gt;Simulador de servicio asíncrono&lt;/h1&gt;
+  &lt;button id="btnCargar" type="button"&gt;Cargar datos del usuario&lt;/button&gt;
+  &lt;p id="resultado" aria-live="polite"&gt;Presiona el botón para empezar.&lt;/p&gt;
+&lt;/main&gt;
+&lt;script src="script.js" defer&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+  <p class="filename">📄 styles.css (completo)</p>
+  <pre><code>* { box-sizing: border-box; }
+body { font-family: Arial, sans-serif; background:#f7f8fb; color:#1c2333; }
+main { max-width:480px; margin:60px auto; padding:20px; background:#fff; border-radius:10px; text-align:center; }
+button { padding:10px 18px; background:#2f6fed; color:#fff; border:none; border-radius:6px; cursor:pointer; font-size:1rem; }
+button:hover { background:#1d4fbb; }
+#resultado { margin-top:16px; font-weight:600; min-height:1.4em; }</code></pre>
+
+  <p class="filename">📄 script.js (completo)</p>
+  <pre><code>class ServicioError extends Error {
+  constructor(mensaje) {
+    super(mensaje);
+    this.name = "ServicioError";
+  }
+}
+
+function obtenerDatosUsuario() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const exito = Math.random() > 0.3;
+      if (exito) {
+        resolve({ usuario: "Ana", rol: "estudiante" });
+      } else {
+        reject(new ServicioError("No se pudo conectar con el servicio"));
+      }
+    }, 800);
+  });
+}
+
+const boton = document.getElementById("btnCargar");
+const resultado = document.getElementById("resultado");
+
+boton.addEventListener("click", async () => {
+  resultado.textContent = "Cargando...";
+  try {
+    const datos = await obtenerDatosUsuario();
+    resultado.textContent = `Bienvenido, ${datos.usuario} (${datos.rol})`;
+  } catch (error) {
+    resultado.textContent = `Error: ${error.message}`;
+  } finally {
+    console.log("Intento de carga finalizado");
+  }
+});</code></pre>
+</section>
+
+<!-- PASO 9 -->
+<section class="step" data-step="9">
+  <div class="step-head">
+    <h2><span class="step-num">9</span>Checklist final</h2>
+    <label class="chk-label"><input type="checkbox" data-chk="9"> Completado</label>
+  </div>
+  <ul>
+    <li>La página abre sin errores al hacer doble clic en <code>index.html</code>.</li>
+    <li>El botón "Cargar datos del usuario" muestra "Cargando..." y luego el resultado (éxito o error).</li>
+    <li>La consola (<code>F12</code>) muestra <code>"Intento de carga finalizado"</code> en cada clic, sin importar el resultado.</li>
+    <li>Usaste <code>const</code> en vez de <code>var</code> en todo tu <code>script.js</code>.</li>
+    <li>La promesa se maneja con <code>async</code>/<code>await</code> y un <code>try/catch/finally</code>, no solo con <code>.then()</code>.</li>
+  </ul>
+</section>
+
+<!-- EVALUACIÓN FINAL -->
+<section class="quiz-final" id="quizFinal">
+  <h2>📊 Evaluación final (10 preguntas · 50 puntos)</h2>
+  <div id="quizEstadoPendiente">
+    <p>Responde las 10 preguntas de opción múltiple distribuidas en esta guía. Cuando termines, presiona el botón para calificar <strong>todas juntas, una sola vez</strong>. Después de calificar, tus respuestas quedan bloqueadas y no podrás cambiarlas.</p>
+    <p id="quizWarning" class="warn"></p>
+    <button class="btn primary" id="btnCalificar">Finalizar práctica y calificar (una sola vez)</button>
+  </div>
+  <div id="quizEstadoFinal" style="display:none;">
+    <p class="quiz-score" id="quizScoreText"></p>
+  </div>
+</section>
+
+<section class="closing" id="closing">
+  <h2>🎉 ¡Completaste el ejercicio de la Clase 4!</h2>
+  <p>Revisa arriba el detalle de cada pregunta (✅/❌) y tu puntaje final. Ya practicaste promesas, async/await y manejo de errores con clases personalizadas en un caso realista: un servicio que a veces falla.</p>
+</section>
+
+<p class="footer-links">Ejercicio evaluado de la Clase 4 · Complementa <code>clase4-javascript-moderno.html</code> (teoría) y <code>clase4-guia-paso-a-paso.html</code> (guía de instalación e investigación) en esta misma carpeta.</p>
+
+</div>
+
+<script>
+(function(){
+  var PREFIX = "ejercicioClase4_";
+  var RESPUESTAS_CORRECTAS = { "1":"b", "2":"b", "3":"b", "4":"b", "5":"b", "6":"a", "7":"b", "8":"b", "9":"b", "10":"c" };
+  var PUNTOS_POR_PREGUNTA = 5;
+
+  var checkboxes = Array.prototype.slice.call(document.querySelectorAll("[data-chk]"));
+  var fill = document.getElementById("progressFill");
+  var label = document.getElementById("progressText");
+  var closing = document.getElementById("closing");
+  var resetBtn = document.getElementById("resetBtn");
+  var resetArmed = false, resetTimer = null;
+
+  var preguntas = Array.prototype.slice.call(document.querySelectorAll(".quiz-q"));
+  var quizWarning = document.getElementById("quizWarning");
+  var btnCalificar = document.getElementById("btnCalificar");
+  var quizEstadoPendiente = document.getElementById("quizEstadoPendiente");
+  var quizEstadoFinal = document.getElementById("quizEstadoFinal");
+  var quizScoreText = document.getElementById("quizScoreText");
+  var quizStatusHeader = document.getElementById("quizStatusHeader");
+
+  function safeGet(key){ try { return localStorage.getItem(key); } catch(e){ return null; } }
+  function safeSet(key, val){ try { localStorage.setItem(key, val); } catch(e){} }
+  function safeRemove(key){ try { localStorage.removeItem(key); } catch(e){} }
+
+  function updateProgress(){
+    var total = checkboxes.length;
+    var done = checkboxes.filter(function(c){ return c.checked; }).length;
+    var pct = total ? Math.round((done/total)*100) : 0;
+    fill.style.width = pct + "%";
+    label.textContent = done + " / " + total + " pasos completados (" + pct + "%)";
+    if (done === total && total > 0) closing.classList.add("show");
+    else closing.classList.remove("show");
+  }
+
+  checkboxes.forEach(function(chk){
+    var id = chk.getAttribute("data-chk");
+    var key = PREFIX + "chk-" + id;
+    if (safeGet(key) === "1") chk.checked = true;
+    var step = chk.closest(".step");
+    function sync(){
+      if (chk.checked) { safeSet(key, "1"); if(step) step.classList.add("done"); }
+      else { safeSet(key, "0"); if(step) step.classList.remove("done"); }
+      updateProgress();
+    }
+    sync();
+    chk.addEventListener("change", sync);
+  });
+
+  function pintarPregunta(q, valorSeleccionado, bloquear){
+    var qid = q.getAttribute("data-q");
+    var esCorrecta = valorSeleccionado === RESPUESTAS_CORRECTAS[qid];
+    q.classList.remove("sin-responder");
+    q.classList.toggle("correcta", esCorrecta);
+    q.classList.toggle("incorrecta", !esCorrecta);
+    var fb = q.querySelector('[data-fb="' + qid + '"]');
+    if (esCorrecta) {
+      fb.textContent = "✅ Correcto (+5 pts)";
+    } else {
+      var correctInput = q.querySelector('input[value="' + RESPUESTAS_CORRECTAS[qid] + '"]');
+      var correctLabel = correctInput ? correctInput.closest("label").textContent.trim() : "";
+      fb.textContent = "❌ Incorrecto. Respuesta correcta: " + correctLabel;
+    }
+    if (bloquear) {
+      q.querySelectorAll('input[type="radio"]').forEach(function(r){ r.disabled = true; });
+    }
+  }
+
+  function calificar(){
+    var sinResponder = preguntas.filter(function(q){
+      var qid = q.getAttribute("data-q");
+      return !document.querySelector('input[name="q' + qid + '"]:checked');
+    });
+    if (sinResponder.length > 0) {
+      quizWarning.textContent = "Te falta" + (sinResponder.length === 1 ? "n 1 pregunta" : "n " + sinResponder.length + " preguntas") + " por responder. Responde todas antes de calificar.";
+      quizWarning.classList.add("show");
+      preguntas.forEach(function(q){ q.classList.remove("sin-responder"); });
+      sinResponder.forEach(function(q){ q.classList.add("sin-responder"); });
+      if (typeof sinResponder[0].scrollIntoView === "function") {
+        sinResponder[0].scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      return;
+    }
+    quizWarning.classList.remove("show");
+
+    var correctas = 0;
+    var respuestas = {};
+    preguntas.forEach(function(q){
+      var qid = q.getAttribute("data-q");
+      var seleccionado = document.querySelector('input[name="q' + qid + '"]:checked');
+      var val = seleccionado.value;
+      respuestas[qid] = val;
+      if (val === RESPUESTAS_CORRECTAS[qid]) correctas++;
+      pintarPregunta(q, val, true);
+    });
+
+    var puntaje = correctas * PUNTOS_POR_PREGUNTA;
+    quizEstadoPendiente.style.display = "none";
+    quizEstadoFinal.style.display = "block";
+    quizScoreText.textContent = "Obtuviste " + puntaje + " / 50 puntos (" + correctas + " de " + preguntas.length + " preguntas correctas)";
+    quizStatusHeader.textContent = "Evaluación: " + puntaje + "/50";
+    quizStatusHeader.classList.remove("pendiente");
+    quizStatusHeader.classList.add("ok");
+
+    safeSet(PREFIX + "quizSubmitted", "1");
+    safeSet(PREFIX + "quizRespuestas", JSON.stringify(respuestas));
+    safeSet(PREFIX + "quizPuntaje", String(puntaje));
+  }
+
+  function restaurarQuizSiYaCalificado(){
+    if (safeGet(PREFIX + "quizSubmitted") !== "1") return;
+    var respuestas = {};
+    try { respuestas = JSON.parse(safeGet(PREFIX + "quizRespuestas") || "{}"); } catch(e){}
+    var puntaje = parseInt(safeGet(PREFIX + "quizPuntaje") || "0", 10);
+    preguntas.forEach(function(q){
+      var qid = q.getAttribute("data-q");
+      var val = respuestas[qid];
+      if (val) {
+        var input = q.querySelector('input[value="' + val + '"]');
+        if (input) input.checked = true;
+        pintarPregunta(q, val, true);
+      }
+    });
+    quizEstadoPendiente.style.display = "none";
+    quizEstadoFinal.style.display = "block";
+    var correctas = Math.round(puntaje / PUNTOS_POR_PREGUNTA);
+    quizScoreText.textContent = "Obtuviste " + puntaje + " / 50 puntos (" + correctas + " de " + preguntas.length + " preguntas correctas)";
+    quizStatusHeader.textContent = "Evaluación: " + puntaje + "/50";
+    quizStatusHeader.classList.remove("pendiente");
+    quizStatusHeader.classList.add("ok");
+  }
+
+  btnCalificar.addEventListener("click", calificar);
+  restaurarQuizSiYaCalificado();
+
+  resetBtn.addEventListener("click", function(){
+    if (!resetArmed){
+      resetArmed = true;
+      resetBtn.textContent = "¿Seguro? Clic de nuevo (borra pasos y calificación)";
+      resetTimer = setTimeout(function(){
+        resetArmed = false;
+        resetBtn.textContent = "Reiniciar todo (pasos + evaluación)";
+      }, 4000);
+      return;
+    }
+    clearTimeout(resetTimer);
+
+    checkboxes.forEach(function(chk){
+      var id = chk.getAttribute("data-chk");
+      safeRemove(PREFIX + "chk-" + id);
+      chk.checked = false;
+      var step = chk.closest(".step");
+      if (step) step.classList.remove("done");
+    });
+
+    safeRemove(PREFIX + "quizSubmitted");
+    safeRemove(PREFIX + "quizRespuestas");
+    safeRemove(PREFIX + "quizPuntaje");
+    preguntas.forEach(function(q){
+      q.classList.remove("correcta", "incorrecta", "sin-responder");
+      q.querySelectorAll('input[type="radio"]').forEach(function(r){ r.checked = false; r.disabled = false; });
+      var qid = q.getAttribute("data-q");
+      var fb = q.querySelector('[data-fb="' + qid + '"]');
+      if (fb) fb.textContent = "";
+    });
+    quizEstadoPendiente.style.display = "block";
+    quizEstadoFinal.style.display = "none";
+    quizWarning.classList.remove("show");
+    quizStatusHeader.textContent = "Evaluación: pendiente";
+    quizStatusHeader.classList.remove("ok");
+    quizStatusHeader.classList.add("pendiente");
+
+    resetArmed = false;
+    resetBtn.textContent = "Reiniciar todo (pasos + evaluación)";
+    updateProgress();
+  });
+
+  updateProgress();
+})();
+</script>
+</body>
+</html>
