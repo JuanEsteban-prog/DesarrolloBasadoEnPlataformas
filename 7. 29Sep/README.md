@@ -77,5 +77,15 @@ El DOM API permite escuchar y reaccionar ante los cambios en los elementos de un
 ```
 
 
+### Integración con API web storage(localStorage y sesssionStorage)
+El navegador incluye dos sistemas de almacenamiento clave para persistir datos, por ejemplo de validación.
+    
+    - **localSotrage:** Lo podemos utilizar para guardar la información de una compra o para alamancenar información no sensible de un fomulario.
+    - **sessionStorage:** Se enfoca en almancenar información que sea más sensible, como información de tarjetas bancarias, etc.
 
+Fragmentar ayuda a mejorar el rendimiento del DOM.
+
+### Conexión con almacenamiento avanzado: IndexDB y cookies(vista previa)
+
+Aunque localStorage es útil, sus límites se superan conIndexedDB, una base de datos interna del navegador que permite alamcenar objetos estrucutrados y realizar búsquedas con índices.
 
