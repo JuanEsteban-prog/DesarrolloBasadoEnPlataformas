@@ -49,3 +49,32 @@ Los eventos también pueden combinarse con operaciones asíncronas, por ejemplo,
     - Usar addEventListener.
 
 
+## DOM API y validación dinámica
+El DOM API (Document Object Model Application Programming Interface) es el conjunto de métodos y propiedades que JavaScript proporciona para acceder, modificar y validar dinámicamente los elementos de una página web. 
+
+El objetivo es detectar errores en tiempo real, mostrar retroalimentación visual inmediata, y conservar temporalmente los daots ingresados, inclus cuando el usuario recarga la página. 
+
+El DOM API permite escuchar y reaccionar ante los cambios en los elementos de un formulario. Cada campo (input, select, textarea) genera eventos(input, change, blur, focus) que pueden interceptarse para aplica reglas de validación, sin depender del envió del formulario.
+
+``` html
+<form id = "registro">
+    <input id = "nombre" placeholder="Nombre Completo" />
+    <small id = "errNombre" class = "error"></small>
+</form>
+
+<script>
+    const nombre = document.querySelector("#nombre");
+    const errNombre = document.querySelector("#errNombre");
+
+    nombre.addEventListener("input", () => {
+        if(nombre.value.trim().length<3){
+            perror("Lo que ingreses debe de tener mínimos 3 caracteres.");
+        }
+    })
+
+    //Cuando aplastemos F5 lo que hayamos llenado del formulario tiene que seguir en el mismo.
+```
+
+
+
+
