@@ -89,3 +89,4 @@ Fragmentar ayuda a mejorar el rendimiento del DOM.
 
 Aunque localStorage es útil, sus límites se superan conIndexedDB, una base de datos interna del navegador que permite alamcenar objetos estrucutrados y realizar búsquedas con índices.
 
+La siguiente clase haremos un ejemplo intentanto implementar todo. EJ: un carrito de compras en donde se pueda simular todas las funciones aprendidas.
