@@ -68,9 +68,10 @@ El DOM API permite escuchar y reaccionar ante los cambios en los elementos de un
 
     nombre.addEventListener("input", () => {
         if(nombre.value.trim().length<3){
-            perror("Lo que ingreses debe de tener mínimos 3 caracteres.");
+            errNombre.textContent = "El nombre debe de tener al menos 3 caracteres";
+            nombre.classList.add("Inválido");
         }
-    })
+    });
 
     //Cuando aplastemos F5 lo que hayamos llenado del formulario tiene que seguir en el mismo.
 ```
