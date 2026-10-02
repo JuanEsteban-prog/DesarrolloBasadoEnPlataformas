@@ -50,3 +50,5 @@ Son aplicaciones progresivas, es decir, pueden funcionar sin tener conexión a i
 ### Sincronización entre fetch y IndexDB
 
 Para lograr una sincronización progresiva: intentar obtener datos del servidor(fetch), si falla, recuperar los datos guardados en el IndexDB, mostrar los resultados en la interfaz, garantizando continudad.
+
+[link donde hay apis de practicas](https://jsonplaceholder.typicode.com/#nested)
