@@ -13,11 +13,19 @@ function mostrarVista(nombreVista) {
     return;
   }
 
+  const vistaYaActiva = panelActivo.classList.contains("activa");
+
   panelesVista.forEach((panel) => {
     const estaActivo = panel === panelActivo;
+    panel.classList.remove("vista-entrante");
     panel.classList.toggle("activa", estaActivo);
     panel.hidden = !estaActivo;
   });
+
+  if (!vistaYaActiva) {
+    void panelActivo.offsetWidth;
+    panelActivo.classList.add("vista-entrante");
+  }
 
   botonesVista.forEach((boton) => {
     if (boton.hasAttribute("aria-pressed")) {
