@@ -25,3 +25,4 @@ Web:
 - Se puede mostrar todos los elementos adicionales que consideremos. 
 
 [URL base datos](https://trackergps-taller-default-rtdb.firebaseio.com/)
+[URL taller resuelto](https://juanfercaicedo.github.io/DesarrolloBasadoEnPlataformas_PUCE/Clases/11_OCT13/proyectoEnClase/index.html)
