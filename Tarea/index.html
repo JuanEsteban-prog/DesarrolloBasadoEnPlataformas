@@ -6,30 +6,31 @@
   <meta name="description" content="Informe sobre la creación y las ventajas de una página web estática que funciona sin conexión a internet.">
   <title>Web sin fronteras | Desarrollo web offline</title>
   <link rel="stylesheet" href="assets/css/estilos.css">
+  <script src="assets/js/navegacion.js" defer></script>
 </head>
 <body>
   <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
 
   <header class="encabezado">
-    <a class="marca" href="#inicio" aria-label="Web sin fronteras, inicio">
+    <button class="marca marca-boton" type="button" data-vista="inicio" aria-label="Ir a Inicio">
       <span class="marca-icono" aria-hidden="true">&lt;/&gt;</span>
       <span>bitácora<span class="marca-punto">.</span></span>
-    </a>
+    </button>
     <nav class="navegacion" aria-label="Navegación principal">
-      <a href="#objetivos">Objetivos</a>
-      <a href="#metodologia">Metodología</a>
-      <a href="#resultados">Resultados</a>
-      <a class="enlace-nav" href="#conclusiones">Conclusiones <span aria-hidden="true">↗</span></a>
+      <button type="button" data-vista="inicio" aria-controls="vista-inicio" aria-pressed="true">Inicio</button>
+      <button type="button" data-vista="contenido" aria-controls="vista-contenido" aria-pressed="false">Contenido</button>
+      <button class="enlace-nav" type="button" data-vista="detalles" aria-controls="vista-detalles" aria-pressed="false">Resultados <span aria-hidden="true">↗</span></button>
     </nav>
   </header>
 
   <main id="contenido">
-    <section class="portada" id="inicio" aria-labelledby="titulo-principal">
+    <div class="vista-seccion activa" id="vista-inicio" data-vista-panel="inicio" aria-labelledby="titulo-principal">
+    <section class="portada" id="inicio">
       <div class="portada-contenido">
         <p class="etiqueta"><span class="punto-en-vivo" aria-hidden="true"></span> INFORME · DESARROLLO WEB</p>
         <h1 id="titulo-principal">Una web que<br>vive <span>sin conexión.</span></h1>
         <p class="portada-intro">Un primer paso en el desarrollo front-end: crear una página clara, funcional y disponible directamente desde el computador.</p>
-        <a class="boton" href="#introduccion">Explorar el proyecto <span aria-hidden="true">↓</span></a>
+        <button class="boton" type="button" data-vista="contenido">Explorar el proyecto <span aria-hidden="true">↓</span></button>
         <p class="nota-portada">HTML5 + CSS3 <span aria-hidden="true">/</span> 100 % local</p>
       </div>
       <div class="portada-visual" aria-label="Ilustración de archivos locales interpretados por un navegador">
@@ -55,7 +56,9 @@
       <div><span class="dato-icono css-icono" aria-hidden="true">3</span><span><strong>CSS3</strong><small>Diseño y presentación</small></span></div>
       <div><span class="dato-icono local-icono" aria-hidden="true">⌂</span><span><strong>Entorno local</strong><small>Sin servidor externo</small></span></div>
     </section>
+    </div>
 
+    <div class="vista-seccion" id="vista-contenido" data-vista-panel="contenido" aria-labelledby="titulo-introduccion" hidden>
     <section class="seccion seccion-intro" id="introduccion" aria-labelledby="titulo-introduccion">
       <div class="rotulo-lateral"><span>EL PUNTO DE PARTIDA</span><span class="linea-vertical" aria-hidden="true"></span>02</div>
       <div class="contenido-intro">
@@ -146,7 +149,9 @@
         <div class="archivo-ruta"><span aria-hidden="true">⌂</span> file:///proyecto_web/index.html</div>
       </aside>
     </section>
+    </div>
 
+    <div class="vista-seccion" id="vista-detalles" data-vista-panel="detalles" aria-labelledby="titulo-resultados" hidden>
     <section class="seccion seccion-resultados" id="resultados" aria-labelledby="titulo-resultados">
       <div class="resultados-cabecera">
         <p class="sobretitulo sobretitulo-claro">LO QUE CONSEGUIMOS</p>
@@ -183,16 +188,17 @@
           <p><span>02</span> Separar HTML y CSS facilita organizar el código y cambiar el diseño sin tocar el contenido.</p>
           <p><span>03</span> Las rutas relativas importan: cada archivo debe estar donde la página espera encontrarlo.</p>
         </div>
-        <a class="volver-inicio" href="#inicio">Volver al inicio <span aria-hidden="true">↑</span></a>
+        <button class="volver-inicio" type="button" data-vista="inicio">Volver al inicio <span aria-hidden="true">↑</span></button>
       </div>
       <div class="cierre-grafico" aria-hidden="true">
         <span>&lt;</span><span class="grafico-punto"></span><span>/&gt;</span>
       </div>
     </section>
+    </div>
   </main>
 
   <footer class="pie">
-    <a class="marca marca-pie" href="#inicio"><span class="marca-icono" aria-hidden="true">&lt;/&gt;</span><span>bitácora<span class="marca-punto">.</span></span></a>
+    <button class="marca marca-pie marca-boton" type="button" data-vista="inicio" aria-label="Ir a Inicio"><span class="marca-icono" aria-hidden="true">&lt;/&gt;</span><span>bitácora<span class="marca-punto">.</span></span></button>
     <p>Hecho para aprender, abierto desde tu computador.</p>
     <span class="pie-etiqueta">HTML + CSS <span aria-hidden="true">·</span> OFFLINE</span>
   </footer>

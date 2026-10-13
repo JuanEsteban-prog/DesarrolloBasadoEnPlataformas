@@ -34,7 +34,8 @@ a {
   color: inherit;
 }
 
-a:focus-visible {
+a:focus-visible,
+button:focus-visible {
   outline: 3px solid #789c1e;
   outline-offset: 4px;
 }
@@ -75,6 +76,15 @@ a:focus-visible {
   text-decoration: none;
 }
 
+.marca-boton {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+}
+
 .marca-icono {
   display: grid;
   width: 34px;
@@ -100,23 +110,42 @@ a:focus-visible {
   font-weight: 600;
 }
 
-.navegacion a {
-  text-decoration: none;
+.navegacion button {
+  padding: 0;
+  border: 0;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
   transition: color 160ms ease;
 }
 
-.navegacion a:hover {
+.navegacion button:hover,
+.navegacion button[aria-pressed="true"] {
   color: #6f8e1d;
 }
 
-.navegacion .enlace-nav {
+.navegacion button.enlace-nav {
   padding: 10px 15px;
   border: 1px solid #c8cec1;
   border-radius: 5px;
 }
 
+.navegacion button.enlace-nav[aria-pressed="true"] {
+  border-color: #a8c64f;
+  background: #edf3df;
+}
+
 .enlace-nav span {
   margin-left: 5px;
+}
+
+.vista-seccion[hidden] {
+  display: none !important;
+}
+
+.vista-seccion.activa {
+  display: block;
 }
 
 .portada {
@@ -206,6 +235,9 @@ p {
   font-size: 13px;
   font-weight: 650;
   text-decoration: none;
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
   transition: background 160ms ease, transform 160ms ease;
 }
 
@@ -934,6 +966,12 @@ p {
   color: var(--tinta);
   font-size: 12px;
   font-weight: 700;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  text-decoration: underline;
   text-decoration-color: #a5bd68;
   text-underline-offset: 4px;
 }
@@ -1071,17 +1109,19 @@ p {
   }
 
   .navegacion {
-    gap: 14px;
+    gap: 5px;
   }
 
-  .navegacion a {
-    display: none;
+  .navegacion button {
+    display: inline-flex;
+    padding: 5px 6px;
+    border: 1px solid #c8cec1;
+    border-radius: 5px;
+    font-size: 10px;
   }
 
-  .navegacion .enlace-nav {
-    display: inline-block;
-    padding: 7px 10px;
-    font-size: 11px;
+  .navegacion button.enlace-nav {
+    padding: 5px 6px;
   }
 
   .portada {
