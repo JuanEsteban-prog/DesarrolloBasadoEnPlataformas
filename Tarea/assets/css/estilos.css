@@ -105,8 +105,9 @@ button:focus-visible {
 .navegacion {
   display: flex;
   align-items: center;
-  gap: 32px;
-  font-size: 13px;
+  justify-content: flex-end;
+  gap: 12px 20px;
+  font-size: 12px;
   font-weight: 600;
 }
 
@@ -210,6 +211,7 @@ p {
 }
 
 .portada h1 span,
+.seccion-resumen h2 span,
 .seccion-intro h2 span,
 .seccion-metodologia h2 span,
 .seccion-conclusiones h2 span {
@@ -459,6 +461,7 @@ p {
   padding: 105px max(8.3vw, calc((100vw - var(--ancho)) / 2));
 }
 
+.seccion-resumen,
 .seccion-intro,
 .seccion-metodologia,
 .seccion-conclusiones {
@@ -1066,6 +1069,7 @@ p {
     padding-left: 6vw;
   }
 
+  .seccion-resumen,
   .seccion-intro,
   .seccion-conclusiones {
     grid-template-columns: 105px 1fr;
@@ -1095,11 +1099,15 @@ p {
   }
 
   .encabezado {
-    min-height: 66px;
-    padding: 0 20px;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 0;
+    padding: 14px 20px 12px;
   }
 
   .marca {
+    align-self: flex-start;
     font-size: 16px;
   }
 
@@ -1109,19 +1117,26 @@ p {
   }
 
   .navegacion {
-    gap: 5px;
+    justify-content: flex-start;
+    gap: 7px;
+    width: 100%;
+    overflow-x: auto;
+    padding: 2px 2px 7px;
+    scrollbar-width: thin;
   }
 
   .navegacion button {
     display: inline-flex;
-    padding: 5px 6px;
+    flex: 0 0 auto;
+    padding: 6px 9px;
     border: 1px solid #c8cec1;
     border-radius: 5px;
-    font-size: 10px;
+    font-size: 11px;
+    white-space: nowrap;
   }
 
   .navegacion button.enlace-nav {
-    padding: 5px 6px;
+    padding: 6px 9px;
   }
 
   .portada {
@@ -1212,6 +1227,7 @@ p {
     padding: 72px 24px;
   }
 
+  .seccion-resumen,
   .seccion-intro,
   .seccion-metodologia,
   .seccion-conclusiones {

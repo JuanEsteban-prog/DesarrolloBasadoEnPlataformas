@@ -18,19 +18,23 @@
     </button>
     <nav class="navegacion" aria-label="Navegación principal">
       <button type="button" data-vista="inicio" aria-controls="vista-inicio" aria-pressed="true">Inicio</button>
-      <button type="button" data-vista="contenido" aria-controls="vista-contenido" aria-pressed="false">Contenido</button>
-      <button class="enlace-nav" type="button" data-vista="detalles" aria-controls="vista-detalles" aria-pressed="false">Resultados <span aria-hidden="true">↗</span></button>
+      <button type="button" data-vista="resumen" aria-controls="vista-resumen" aria-pressed="false">Resumen</button>
+      <button type="button" data-vista="introduccion" aria-controls="vista-introduccion" aria-pressed="false">Introducción</button>
+      <button type="button" data-vista="objetivos" aria-controls="vista-objetivos" aria-pressed="false">Objetivos</button>
+      <button type="button" data-vista="metodologia" aria-controls="vista-metodologia" aria-pressed="false">Metodología</button>
+      <button type="button" data-vista="resultados" aria-controls="vista-resultados" aria-pressed="false">Resultados</button>
+      <button class="enlace-nav" type="button" data-vista="conclusiones" aria-controls="vista-conclusiones" aria-pressed="false">Conclusiones</button>
     </nav>
   </header>
 
   <main id="contenido">
-    <div class="vista-seccion activa" id="vista-inicio" data-vista-panel="inicio" aria-labelledby="titulo-principal">
+    <div class="vista-seccion vista--inicio activa" id="vista-inicio" data-vista-panel="inicio" aria-labelledby="titulo-principal">
     <section class="portada" id="inicio">
       <div class="portada-contenido">
         <p class="etiqueta"><span class="punto-en-vivo" aria-hidden="true"></span> INFORME · DESARROLLO WEB</p>
         <h1 id="titulo-principal">Una web que<br>vive <span>sin conexión.</span></h1>
         <p class="portada-intro">Un primer paso en el desarrollo front-end: crear una página clara, funcional y disponible directamente desde el computador.</p>
-        <button class="boton" type="button" data-vista="contenido">Explorar el proyecto <span aria-hidden="true">↓</span></button>
+        <button class="boton" type="button" data-vista="resumen">Explorar el proyecto <span aria-hidden="true">↓</span></button>
         <p class="nota-portada">HTML5 + CSS3 <span aria-hidden="true">/</span> 100 % local</p>
       </div>
       <div class="portada-visual" aria-label="Ilustración de archivos locales interpretados por un navegador">
@@ -47,7 +51,7 @@
         <span class="decoracion decoracion-uno" aria-hidden="true">01</span>
         <span class="decoracion decoracion-dos" aria-hidden="true">{ }</span>
       </div>
-      <div class="numero-seccion" aria-hidden="true">01 — 06</div>
+      <div class="numero-seccion" aria-hidden="true">01 — 07</div>
     </section>
 
     <section class="franja-datos" aria-label="Tecnologías utilizadas">
@@ -58,9 +62,27 @@
     </section>
     </div>
 
-    <div class="vista-seccion" id="vista-contenido" data-vista-panel="contenido" aria-labelledby="titulo-introduccion" hidden>
+    <div class="vista-seccion vista--resumen" id="vista-resumen" data-vista-panel="resumen" aria-labelledby="titulo-resumen" hidden>
+      <section class="seccion seccion-resumen" aria-labelledby="titulo-resumen">
+        <div class="rotulo-lateral"><span>EL PROYECTO EN BREVE</span><span class="linea-vertical" aria-hidden="true"></span>02</div>
+        <div class="contenido-intro">
+          <p class="sobretitulo">RESUMEN</p>
+          <h2 id="titulo-resumen">Una página local,<br><span>de principio a fin.</span></h2>
+          <div class="intro-columnas">
+            <p>Este informe presenta el desarrollo de una página web estática diseñada para ejecutarse directamente en un navegador, sin depender de un servidor remoto ni de una conexión a internet.</p>
+            <p>El proyecto utiliza HTML5 para organizar el contenido y CSS3 para su presentación. Los archivos y recursos se mantienen en carpetas locales, y la página se prueba abriendo su archivo principal desde el computador.</p>
+          </div>
+          <div class="cita">
+            <span class="cita-comilla" aria-hidden="true">“</span>
+            <p>Una experiencia front-end completa, construida y probada en el entorno local.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="vista-seccion vista--introduccion" id="vista-introduccion" data-vista-panel="introduccion" aria-labelledby="titulo-introduccion" hidden>
     <section class="seccion seccion-intro" id="introduccion" aria-labelledby="titulo-introduccion">
-      <div class="rotulo-lateral"><span>EL PUNTO DE PARTIDA</span><span class="linea-vertical" aria-hidden="true"></span>02</div>
+      <div class="rotulo-lateral"><span>EL PUNTO DE PARTIDA</span><span class="linea-vertical" aria-hidden="true"></span>03</div>
       <div class="contenido-intro">
         <p class="sobretitulo">INTRODUCCIÓN</p>
         <h2 id="titulo-introduccion">Antes de publicar,<br><span>todo empieza aquí.</span></h2>
@@ -74,7 +96,9 @@
         </div>
       </div>
     </section>
+    </div>
 
+    <div class="vista-seccion vista--objetivos" id="vista-objetivos" data-vista-panel="objetivos" aria-labelledby="titulo-objetivos" hidden>
     <section class="seccion seccion-objetivos" id="objetivos" aria-labelledby="titulo-objetivos">
       <div class="cabecera-seccion">
         <div>
@@ -108,9 +132,11 @@
         </article>
       </div>
     </section>
+    </div>
 
+    <div class="vista-seccion vista--metodologia" id="vista-metodologia" data-vista-panel="metodologia" aria-labelledby="titulo-metodologia" hidden>
     <section class="seccion seccion-metodologia" id="metodologia" aria-labelledby="titulo-metodologia">
-      <div class="rotulo-lateral"><span>DEL PLAN AL NAVEGADOR</span><span class="linea-vertical" aria-hidden="true"></span>04</div>
+      <div class="rotulo-lateral"><span>DEL PLAN AL NAVEGADOR</span><span class="linea-vertical" aria-hidden="true"></span>05</div>
       <div class="metodologia-contenido">
         <p class="sobretitulo">EL PROCESO</p>
         <h2 id="titulo-metodologia">Cuatro pasos.<br><span>Un sitio listo.</span></h2>
@@ -151,7 +177,7 @@
     </section>
     </div>
 
-    <div class="vista-seccion" id="vista-detalles" data-vista-panel="detalles" aria-labelledby="titulo-resultados" hidden>
+    <div class="vista-seccion vista--resultados" id="vista-resultados" data-vista-panel="resultados" aria-labelledby="titulo-resultados" hidden>
     <section class="seccion seccion-resultados" id="resultados" aria-labelledby="titulo-resultados">
       <div class="resultados-cabecera">
         <p class="sobretitulo sobretitulo-claro">LO QUE CONSEGUIMOS</p>
@@ -177,9 +203,11 @@
       </div>
       <p class="nota-resultado"><span aria-hidden="true">✳</span> La experiencia completa se encuentra en los archivos de este proyecto.</p>
     </section>
+    </div>
 
+    <div class="vista-seccion vista--conclusiones" id="vista-conclusiones" data-vista-panel="conclusiones" aria-labelledby="titulo-conclusiones" hidden>
     <section class="seccion seccion-conclusiones" id="conclusiones" aria-labelledby="titulo-conclusiones">
-      <div class="rotulo-lateral"><span>PARA RECORDAR</span><span class="linea-vertical" aria-hidden="true"></span>06</div>
+      <div class="rotulo-lateral"><span>PARA RECORDAR</span><span class="linea-vertical" aria-hidden="true"></span>07</div>
       <div class="conclusiones-contenido">
         <p class="sobretitulo">CONCLUSIONES</p>
         <h2 id="titulo-conclusiones">Pequeños archivos.<br><span>Grandes posibilidades.</span></h2>
