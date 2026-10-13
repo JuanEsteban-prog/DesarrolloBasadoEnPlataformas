@@ -24,5 +24,7 @@ Web:
 - Mostrar en tiempo real en el mapa de Google Maps cómo se mueve el dispositivo celular.
 - Se puede mostrar todos los elementos adicionales que consideremos. 
 
-[URL base datos](https://trackergps-taller-default-rtdb.firebaseio.com/)
-[URL taller resuelto](https://juanfercaicedo.github.io/DesarrolloBasadoEnPlataformas_PUCE/Clases/11_OCT13/proyectoEnClase/index.html)
+
+### Taller solucionado
+- [URL base datos](https://trackergps-taller-default-rtdb.firebaseio.com/)
+- [URL taller resuelto](https://juanfercaicedo.github.io/DesarrolloBasadoEnPlataformas_PUCE/Clases/11_OCT13/proyectoEnClase/index.html)
