@@ -112,3 +112,11 @@ En resumen, los estilos arquitectónicos establecen la estructura general, los p
 
 ### DEBER
 Traer el modelo de la base de datos de nuestro sistema(proyecto presentado la anterior clase). Esta base de datos debe de soportar todos los requerimientos funcionales de los negocios que escogimos.
+    - Levantar los requerimientos de los flujos de información.
+    - Tipos de inventario, y cual vamos a aplicar.
+    - Facturación/Punto de venta físico. 
+    - Envio de los productos a domicilio/logística.
+    - Temas de devolución.
+
+Diagrama físico de la base de datos(A0). Hay que hacer el modelo físico de todas las tablas.
+ 
