@@ -110,4 +110,5 @@ En resumen, los estilos arquitectónicos establecen la estructura general, los p
 
 **HAY QUE ENTENDER BIEN ESTOS CONCEPTOS. SON SUMAMENTE IMPORTANTES**
 
-  
+### DEBER
+Traer el modelo de la base de datos de nuestro sistema(proyecto presentado la anterior clase). Esta base de datos debe de soportar todos los requerimientos funcionales de los negocios que escogimos.
