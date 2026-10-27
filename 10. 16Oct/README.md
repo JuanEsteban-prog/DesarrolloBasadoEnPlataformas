@@ -119,4 +119,3 @@ Traer el modelo de la base de datos de nuestro sistema(proyecto presentado la an
     - Temas de devolución.
 
 Diagrama físico de la base de datos(A0). Hay que hacer el modelo físico de todas las tablas.
- 
