@@ -32,3 +32,7 @@ Tenemos que seguir la siguiente secuencia: DevSecOps -> CI-CD
 [Herramienta utilizada para el despliegue](render.com)
 
 Prompt para el agente: Vamos a desplegar usando CI-CD coge el backend súbele al repositorio de github (URL repo) y vas a ir a github actions dentro de actions avs a hacer pruebas de api, validaciones de api, seguridad de api, verificar paquetes y sus versiones. Una vez que todas las pruebas y validaciones sean ok, vas sa desplegar en el render en la siguiente url(url de render) considerando que la base de datos esta en postgres y las APIs están cosntruidas en node.js (su respectiva versión) y en express(versión de express). 
+
+
+[REPO DONDE SE HIZO EL DESPLIEGUE](https://github.com/JuanEsteban-prog/Proyecto_Desarrollo_Basado_En_Plataformas)
+
